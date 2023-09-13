@@ -3,3 +3,8 @@ jdk:
   - openjdk17
 before_install:
   - chmod +x gradlew
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_TOKEN
+  app: "book-demo-store99"
