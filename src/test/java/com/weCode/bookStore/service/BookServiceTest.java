@@ -35,6 +35,7 @@ public class BookServiceTest {
         Book book = getBook();
         books.add(book);
         BookDto bookDto = getBookDto();
+
         when(bookRepository.findAll()).thenReturn(books);
         when(mapper.map(book, BookDto.class)).thenReturn(bookDto);
 
