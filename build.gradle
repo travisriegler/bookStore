@@ -42,6 +42,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+
 //jacocoTestCoverageVerification {
 //	violationRules {
 //		rule {
