@@ -12,9 +12,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookDto {
+
     private UUID id;
+
     private String title;
+
     private String description;
+
     private int releaseYear;
 
 
