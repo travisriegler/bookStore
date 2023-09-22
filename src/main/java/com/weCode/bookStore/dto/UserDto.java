@@ -1,6 +1,5 @@
-package com.weCode.bookStore.model;
+package com.weCode.bookStore.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,22 +12,16 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
+public class UserDto {
+
     private UUID id;
 
-    @Column
     @NotNull
-    private String title;
+    private String name;
 
-    @Column
     @NotNull
-    private String description;
+    private String email;
 
-    @Column
     @NotNull
-    private int releaseYear;
-
+    private String password;
 }

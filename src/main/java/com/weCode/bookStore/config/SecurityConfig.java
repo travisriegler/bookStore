@@ -15,6 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -44,10 +48,20 @@ public class SecurityConfig {
 
         http
                 .csrf((csrf) -> csrf.disable())
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+                    corsConfiguration.setAllowedMethods(Arrays.asList(
+                            "GET", "POST", "PUT", "DELETE", "OPTIONS"
+                    ));
+                    corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
+                    return corsConfiguration;
+                }))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                                 .requestMatchers(new AntPathRequestMatcher("/api/v1/login")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/api/v1/register")).permitAll()
                                 .anyRequest().authenticated()
                 );
 

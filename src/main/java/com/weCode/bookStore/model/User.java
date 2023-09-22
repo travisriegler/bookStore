@@ -9,26 +9,28 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Book {
+@Table(name = "users")
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
     private UUID id;
 
     @Column
     @NotNull
-    private String title;
+    private String name;
 
     @Column
     @NotNull
-    private String description;
+    private String email;
 
     @Column
     @NotNull
-    private int releaseYear;
-
+    private String password;
 }
